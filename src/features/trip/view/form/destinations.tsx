@@ -46,6 +46,7 @@ const Destinations: React.FC<Props> = ({ destinations, setDestinations }) => {
           onChange={handleDestinationChange}
           value={destinationValue}
           ref={inputRef}
+          disabled={hasDestinations}
         />
         <IconWrapper
           onClick={handleAddDestination}
