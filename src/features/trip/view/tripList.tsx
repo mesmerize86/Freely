@@ -5,7 +5,6 @@ import { TripField } from 'models/Trip';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { FieldTypes } from 'models/Field';
-import { formatDate } from 'helper';
 import { getTripList } from 'api/trip';
 import { setTripList } from '../slice';
 import { useDispatch } from 'react-redux';
@@ -13,9 +12,10 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const TripView: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [trips, setTrips] = useState<TripField[]>([
     {
-      id: 'asdfadf',
+      id: '2mac3sa',
       title: 'loading',
       startDate: new Date(),
       endDate: new Date(),
@@ -32,34 +32,42 @@ const TripView: React.FC = () => {
 
   const fetchTripList = useCallback(async () => {
     try {
-      if (!hasTripAdded) {
-        const tripListResponse = await getTripList();
-        const trips: TripField[] = tripListResponse && tripListResponse.data;
-        dispatch(setTripList(trips));
-      }
+      const tripListResponse = await getTripList();
+      const trips: TripField[] = tripListResponse && tripListResponse.data;
+      dispatch(setTripList(trips));
+      setTrips(trips);
+      setIsLoading(false);
     } catch (error) {
       toast('Cannot get trip list.');
     }
   }, []);
 
   useEffect(() => {
-    fetchTripList();
+    if (!hasTripAdded) {
+      console.log('you load first');
+      fetchTripList();
+    } else {
+      setTimeout(() => {
+        setTrips(tripsResponse);
+        setIsLoading(false);
+      }, 3000);
+    }
   }, []);
-
-  setTimeout(() => {
-    setTrips(tripsResponse);
-  }, 3000);
 
   return (
     <StyledTripView>
       {trips.map((trip: TripField) => (
         <StyledLink key={trip.id} to={`/trips/${trip.id}`}>
-          <StyledCard>
+          <StyledCard data-disabled={isLoading}>
             <h3>{trip.title}</h3>
-            <p>
-              {formatDate(trip.startDate)} - {formatDate(trip.endDate)}
-            </p>
-            <StatusText>{trip.status}</StatusText>
+            {!isLoading && (
+              <>
+                <p>
+                  {String(trip.startDate)} - {String(trip.endDate)}
+                </p>
+                <StatusText>{trip.status}</StatusText>
+              </>
+            )}
           </StyledCard>
         </StyledLink>
       ))}
@@ -93,6 +101,17 @@ const StyledCard = styled(Card)`
   &:hover {
     ${StatusText} {
       background-color: ${(props) => props.theme.colours.brand};
+    }
+  }
+
+  &[data-disabled='true'] {
+    &:hover {
+      cursor: not-allowed;
+      background-color: ${(props) => props.theme.colours.monoLightX};
+      border-color: ${(props) => props.theme.colours.bodyBorder};
+      ${StatusText} {
+        background-color: ${(props) => props.theme.colours.bodyBorder};
+      }
     }
   }
 `;

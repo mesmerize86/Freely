@@ -5,7 +5,7 @@ export const theme = {
     white: '#ffffff',
     monoLightX: '#f8f8f8',
     monoLightXXX: '#393b3d',
-    bodyBorder: 'rgba(57, 59, 61, 0.3);',
+    bodyBorder: 'rgba(57, 59, 61, 0.3)',
   },
   fontSizes: {
     finePrint: '0.75rem',

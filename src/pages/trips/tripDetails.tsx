@@ -8,7 +8,7 @@ import { RootState } from 'store';
 import { getTripById } from 'api/trip';
 import Breadcrumb from 'features/breadcrumb';
 
-const TripDetails = () => {
+const TripDetails: React.FC = () => {
   const { id } = useParams();
   const [trip, setTrip] = useState<TripField>();
 
@@ -22,7 +22,7 @@ const TripDetails = () => {
   }, []);
 
   useEffect(() => {
-    //if tripField is not defined or on page refresh, get the data from API
+    // if tripField is not defined or on page refresh, get the data from API
     !tripField ? fetchTripById() : setTrip(tripField);
   }, []);
 

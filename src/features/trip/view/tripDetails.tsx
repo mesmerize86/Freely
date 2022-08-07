@@ -1,36 +1,34 @@
 import React from 'react';
 import { TripField } from 'models/Trip';
 import Card, { StyledCard } from 'components/card';
-import { formatDate } from 'helper';
 import styled from 'styled-components';
+import { nanoid } from '@reduxjs/toolkit';
 
 type Props = {
   tripDetail: TripField | undefined;
 };
 
-const TripDetails: React.FC<Props> = ({ tripDetail }) => {
-  return (
-    <div>
-      {tripDetail && (
-        <TripDetailWrapper>
-          <TripFirstRow>
-            <TripTitle>{tripDetail.title}</TripTitle>
-            <p>
-              {formatDate(tripDetail.startDate)} -{' '}
-              {formatDate(tripDetail.endDate)}
-            </p>
-            <StatusText>{tripDetail.status}</StatusText>
-          </TripFirstRow>
-          <TripSecondRow>
-            {tripDetail.destinations.map((destination) => (
-              <Card>{destination}</Card>
-            ))}
-          </TripSecondRow>
-        </TripDetailWrapper>
-      )}
-    </div>
-  );
-};
+const TripDetails: React.FC<Props> = ({ tripDetail }) => (
+  <div>
+    {tripDetail && (
+      <TripDetailWrapper>
+        <TripFirstRow>
+          <TripTitle>{tripDetail.title}</TripTitle>
+          <p>
+            {String(tripDetail.startDate)} -{String(tripDetail.endDate)}
+          </p>
+          <StatusText>{tripDetail.status}</StatusText>
+        </TripFirstRow>
+        <TripSecondRow>
+          {tripDetail.destinations.map((destination) => (
+            <Card key={nanoid()}>{destination}</Card>
+          ))}
+        </TripSecondRow>
+      </TripDetailWrapper>
+    )}
+  </div>
+);
+
 export default TripDetails;
 
 const TripDetailWrapper = styled.div`

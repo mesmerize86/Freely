@@ -5,14 +5,14 @@ import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import { UseFormSetValue } from 'react-hook-form';
-import { Inputs } from 'features/trip/types';
+import { Inputs, ValidationInputField } from 'features/trip/types';
 import { StyledInput } from 'components/inputField';
 
 type Props = {
   label: string;
   name: string;
-  register: any;
-  validationRule?: any;
+  register?: any;
+  validationRule?: ValidationInputField;
   setValue: UseFormSetValue<Inputs>;
 };
 

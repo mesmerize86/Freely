@@ -5,6 +5,7 @@ import Sidebar from '../sidebar';
 type Props = {
   children: ReactNode;
 };
+
 const Default: React.FC<Props> = ({ children }): ReactElement => {
   return (
     <Layout>

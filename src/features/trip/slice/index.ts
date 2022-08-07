@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TripField } from 'models/Trip';
-import { RootState } from 'store';
 
 const initialState: TripField[] = [];
 
@@ -12,12 +11,10 @@ export const tripSlice = createSlice({
       return [action.payload, ...state];
     },
     setTripList(state, action) {
-      return [...state, ...action.payload];
+      return [...action.payload];
     },
   },
 });
-
-export const selectAllTrips = (state: RootState) => state.trips;
 
 //actions
 export const { addTrip, setTripList } = tripSlice.actions;

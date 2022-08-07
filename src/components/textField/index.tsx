@@ -1,22 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import InputField from '../inputField';
-import { RegisterOptions } from 'react-hook-form';
-import { TripField } from 'models/Trip';
+import { ValidationInputField } from 'features/trip/types';
 
 type Props = {
   label: string;
   icon?: React.ReactNode;
   onClick?: () => void;
   value?: string;
-  defaultValue?: string;
-  errors?: any;
-  errorMessage?: string;
   name: string;
   inputRef?: React.RefObject<HTMLInputElement>;
   register?: any;
-  validationRule?: any;
-  onChange?: (e: CustomEvent<HTMLInputElement>) => void;
+  validationRule?: ValidationInputField;
 };
 
 const TextField: React.FC<Props> = ({
@@ -28,7 +23,6 @@ const TextField: React.FC<Props> = ({
   inputRef,
   register,
   validationRule,
-  onChange,
 }) => {
   return (
     <StyledTextField>
@@ -41,8 +35,6 @@ const TextField: React.FC<Props> = ({
         inputRef={inputRef}
         register={register}
         validationRule={validationRule}
-        // @ts-ignore
-        onChange={onChange}
       />
     </StyledTextField>
   );

@@ -1,7 +1,5 @@
 import React, { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import { TripField } from 'models/Trip';
-import { RegisterOptions } from 'react-hook-form';
 import { ValidationInputField } from 'features/trip/types';
 
 type Props = {
@@ -16,7 +14,7 @@ type Props = {
   onClick?: () => void;
   inputRef?: React.RefObject<HTMLInputElement>;
   register?: any;
-  validationRule?: any;
+  validationRule?: ValidationInputField;
 };
 const InputField: React.FC<Props> = ({
   type = 'text',

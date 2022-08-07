@@ -14,9 +14,8 @@ import { useDispatch } from 'react-redux';
 import { addTrip } from '../../slice';
 import { TripField } from 'models/Trip';
 import { nanoid } from '@reduxjs/toolkit';
-import { formatDate } from '../../../../helper';
 
-const TripForm = () => {
+const TripForm: React.FC = () => {
   const {
     register,
     handleSubmit,

@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from 'pages/home';
-import Trips from 'pages/trips';
+import Trips from 'pages/trips/tripList';
 import ErrorPage from 'pages/404';
 import TripDetails from 'pages/trips/tripDetails';
 
-const PageRoutes = () => {
+const PageRoutes: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
