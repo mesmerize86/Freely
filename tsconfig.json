@@ -1,26 +1,49 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "include": ["src/**/*"],
+    "paths": {
+      "api/*": ["api/*"],
+      "components/*": ["components/*"],
+      "models/*": ["models/*"],
+      "pages/*": ["pages/*"],
+      "stores/*": ["stores/*"],
+      "styles/*": ["styles/*"],
+      "utils/*": ["utils/*"],
+      "hooks/*": ["hooks/*"]
+    },
     "target": "es5",
+    "jsxFactory": "React.createElement",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
     "allowJs": true,
+    "checkJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "jsxFragmentFactory": "React.Fragment",
+    "typeRoots": ["types"],
+
+    /* Additional Checks */
+    "noUnusedLocals": false /* Report errors on unused locals. */,
+    "noUnusedParameters": false /* Report errors on unused parameters. */,
+    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */
   },
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules"]
 }
